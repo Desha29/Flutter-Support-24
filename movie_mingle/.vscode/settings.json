@@ -8,6 +8,7 @@
         "advengers",
         "ARGB",
         "AUTOINCREMENT",
+        "Comingmovies",
         "custombutton",
         "customslider",
         "datasource",
@@ -16,6 +17,9 @@
         "moviepage",
         "moviesmodel",
         "moviestars",
-        "mycontroller"
+        "movietype",
+        "mycontroller",
+        "Playingmovies",
+        "searchpage"
     ]
 }

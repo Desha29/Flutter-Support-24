@@ -63,7 +63,7 @@ class LoginOrSignup extends StatelessWidget {
                 CustomButtonAuth(
                   text: "Sign Up",
                   onPressed: () {
-                    print(MoviesData.movies.length);
+                    print(MoviesData.upComingMovies.length);
                     Get.offNamed(AppRoutes.signup);
                   },
                 )

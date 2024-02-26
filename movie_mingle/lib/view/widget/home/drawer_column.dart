@@ -1,6 +1,8 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:movie_mingle/core/constant/routes.dart';
 
 class DrawerColumn extends StatelessWidget {
   DrawerColumn({super.key});
@@ -55,17 +57,21 @@ class DrawerColumn extends StatelessWidget {
                   );
                 }),
           ),
-          const ListTile(
-            leading: Icon(
-              Icons.logout,
-              size: 35,
-            ),
-            title: Text(
-              "Logout",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Colors.white70,
+          InkWell(
+            onTap: () {
+              Get.offAllNamed(AppRoutes.login);
+            },
+            child: const ListTile(
+              leading: Icon(
+                Icons.logout,
+              ),
+              title: Text(
+                "Logout",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white70,
+                ),
               ),
             ),
           )

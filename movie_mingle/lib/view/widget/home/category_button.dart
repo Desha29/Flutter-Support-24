@@ -13,8 +13,10 @@ class CategoryButton extends StatelessWidget {
         child: Container(
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
-                color: const Color.fromARGB(134, 71, 55, 55)),
-            padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 2),
+                color: Color.fromARGB(255, 60, 60, 60)),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 13,
+            ),
             child: Center(
               child: Text(
                 categoryName,

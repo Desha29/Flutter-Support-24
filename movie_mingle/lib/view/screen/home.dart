@@ -1,9 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_mingle/view/widget/home/CategoryButton.dart';
-import 'package:movie_mingle/view/widget/home/DrawerColumn.dart';
-import 'package:movie_mingle/view/widget/home/MovieRow.dart';
-import 'package:movie_mingle/view/widget/home/MoviesSlider.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:movie_mingle/view/widget/home/drawer_column.dart';
+import 'package:movie_mingle/view/widget/home/movie_row.dart';
+import 'package:movie_mingle/view/widget/home/movies_slider.dart';
 import '../../controller/moviesdata_controlletr.dart';
+import '../../core/constant/routes.dart';
+import '../widget/home/category_row.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatefulWidget {
@@ -14,6 +18,17 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  getMovies() async {
+    await MoviesData().getData();
+    setState(() {});
+  }
+
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getMovies();
+  }
+
   List<String> CategoryNames = [
     "Action",
     "Drama",
@@ -25,33 +40,19 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    void initState() {
-      // TODO: implement initState
-      super.initState();
-
-      setState(() {});
-    }
-
     return Scaffold(
         drawer: Drawer(
-          backgroundColor: Color(0xff2a2a2a),
+          backgroundColor: Color.fromARGB(240, 35, 35, 35),
           child: DrawerColumn(),
         ),
         appBar: AppBar(
-            backgroundColor: Colors.transparent,
             iconTheme: const IconThemeData(size: 30, color: Colors.white70),
             actions: [
-              InkWell(
-                  onTap: () {
-                    print(MoviesData.movies.length);
-                    print(MoviesData.casts.length);
-                  },
-                  child: const Icon(
-                    Icons.add,
-                  )),
               SizedBox(width: 10),
               InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(AppRoutes.searchPage);
+                  },
                   child: const Icon(
                     Icons.search,
                   )),
@@ -65,6 +66,10 @@ class _HomePageState extends State<HomePage> {
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ListView(
+            physics: BouncingScrollPhysics(),
+            addAutomaticKeepAlives: true,
+            addRepaintBoundaries: true,
+            addSemanticIndexes: true,
             children: [
               const Text(
                 "Trending Movies",
@@ -76,18 +81,19 @@ class _HomePageState extends State<HomePage> {
               MovieSlider(),
               SizedBox(
                 height: 60,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: CategoryNames.length,
-                  itemBuilder: (context, index) {
-                    return CategoryButton(categoryName: CategoryNames[index]);
-                  },
-                ),
+                child: CategoryRow(CategoryNames: CategoryNames),
               ),
-              MovieRow(title: "Upcoming"),
-              MovieRow(title: "Now Playing"),
-              MovieRow(title: "Top Rated"),
-              MovieRow(title: "Popular"),
+              MovieRow(title: "Upcoming", movies: MoviesData.upComingMovies),
+              MovieRow(
+                  title: "Now Playing", movies: MoviesData.nowPlayingMovies),
+              MovieRow(
+                title: "Top Rated",
+                movies: MoviesData.topRatedMovies,
+              ),
+              MovieRow(
+                title: "Popular",
+                movies: MoviesData.popularMovies,
+              ),
             ],
           ),
         ));

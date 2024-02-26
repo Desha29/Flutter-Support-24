@@ -12,9 +12,9 @@ class RatingStars extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RatingBar.builder(
-        initialRating: MovieStars,
+        initialRating: MovieStars.roundToDouble(),
         minRating: 1,
-        maxRating: 5,
+        maxRating: 10,
         direction: Axis.horizontal,
         allowHalfRating: true,
         ignoreGestures: true,

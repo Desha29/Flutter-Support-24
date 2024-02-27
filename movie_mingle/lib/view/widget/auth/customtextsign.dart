@@ -13,23 +13,25 @@ class CustomTextSign extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          text,
-        ),
-        InkWell(
-          onTap: onTap,
-          child: Text(
-            sign,
-            style: TextStyle(
-                color: Color(0xffe50014),
-                fontSize: 17,
-                fontWeight: FontWeight.bold),
+    return SingleChildScrollView(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            text,
           ),
-        ),
-      ],
+          InkWell(
+            onTap: onTap,
+            child: Text(
+              sign,
+              style: TextStyle(
+                  color: Color(0xffe50014),
+                  fontSize: 17,
+                  fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

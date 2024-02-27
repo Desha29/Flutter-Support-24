@@ -22,12 +22,14 @@ class OnBoarding extends StatelessWidget {
           Positioned(
             top: height / 1.1,
             right: width / 8,
-            child: Column(
-              children: [
-                Center(child: CustomButtonOnBoarding(width: width)),
-                const SizedBox(height: 15),
-                const ControllerOnBoarding()
-              ],
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Center(child: CustomButtonOnBoarding(width: width)),
+                  const SizedBox(height: 15),
+                  const ControllerOnBoarding()
+                ],
+              ),
             ),
           ),
         ],

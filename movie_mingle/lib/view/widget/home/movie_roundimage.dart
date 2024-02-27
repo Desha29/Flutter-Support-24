@@ -52,20 +52,22 @@ class MovieRoundImage extends StatelessWidget {
         Positioned(
           bottom: 25,
           left: 20,
-          child: Row(
-            children: [
-              Text(
-                Rating,
-                style: TextStyle(
-                    color: Color.fromARGB(255, 90, 95, 151),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w800),
-              ),
-              SizedBox(
-                width: 5,
-              ),
-              RatingStars(MovieStars: Stars),
-            ],
+          child: SingleChildScrollView(
+            child: Row(
+              children: [
+                Text(
+                  Rating,
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 90, 95, 151),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w800),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                RatingStars(MovieStars: Stars),
+              ],
+            ),
           ),
         ),
       ],

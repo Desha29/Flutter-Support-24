@@ -7,7 +7,7 @@ import 'package:movie_mingle/core/constant/routes.dart';
 import 'package:movie_mingle/data/model/onboardingmodel.dart';
 import 'package:movie_mingle/view/widget/auth/custombuttonauth.dart';
 
-import '../../controller/moviesdata_controlletr.dart';
+import '../../../controller/moviesdata_controlletr.dart';
 
 // ignore: must_be_immutable
 class LoginOrSignup extends StatelessWidget {

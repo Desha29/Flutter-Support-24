@@ -21,15 +21,15 @@ class MovieDetails extends StatelessWidget {
         body: Container(
       child: Stack(children: [
         Container(
-          height: 300,
+          height: 450,
           decoration: BoxDecoration(
               image: DecorationImage(
-                  fit: BoxFit.fitWidth,
+                  fit: BoxFit.cover,
                   alignment: FractionalOffset.topCenter,
                   image: NetworkImage(
                       ApiConstants.imageUrl + movies[1][args].backdropPath))),
         ),
-        GrandientColor(height: 200, top: 0, bottom: 550),
+        GrandientColor(height: 200, top: 0, bottom: 400),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 40),
           child: ListView(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_mingle/data/model/onboardingmodel.dart';
 
+import '../grandientcolors.dart';
+
 class CustomTitleAuth extends StatelessWidget {
   final String text;
   final String image;
@@ -46,28 +48,7 @@ class CustomTitleAuth extends StatelessWidget {
             )
           ])),
         ),
-        Positioned(
-          top: 130,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: 200,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(stops: const [
-                0.1,
-                0.3,
-                0.5,
-                0.7,
-                0.9
-              ], colors: [
-                Color(0xff1c1c1c).withOpacity(0.01),
-                Color(0xff1c1c1c).withOpacity(0.3),
-                Color(0xff1c1c1c).withOpacity(0.6),
-                Color(0xff1c1c1c).withOpacity(0.9),
-                Color(0xff1c1c1c)
-              ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
-            ),
-          ),
-        ),
+        GrandientColor(top: 130, height: 200, bottom: 0)
       ],
     );
   }

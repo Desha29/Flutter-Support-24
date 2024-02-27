@@ -17,72 +17,76 @@ class MovieRow extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 20),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                title,
-                style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.toNamed(AppRoutes.movieTypePage,
-                      arguments: [title, movies]);
-                },
-                child: const Text(
-                  "See more",
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 237, 55, 55),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.underline,
-                    decorationColor: Color.fromARGB(255, 237, 55, 55),
-                  ),
+          SingleChildScrollView(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w600),
                 ),
-              )
-            ],
+                TextButton(
+                  onPressed: () {
+                    Get.toNamed(AppRoutes.movieTypePage,
+                        arguments: [title, movies]);
+                  },
+                  child: const Text(
+                    "See more",
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 237, 55, 55),
+                      fontSize: 12,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.underline,
+                      decorationColor: Color.fromARGB(255, 237, 55, 55),
+                    ),
+                  ),
+                )
+              ],
+            ),
           ),
-          SizedBox(
-            height: 225,
-            child: movies.isEmpty
-                ? const Center(
-                    child: CircularProgressIndicator(
-                    color: Color.fromARGB(255, 237, 55, 55),
-                  ))
-                : ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    addAutomaticKeepAlives: true,
-                    itemCount: movies.length,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () async {
-                          DioHelper.id = movies[index].id.toString();
-                          List castList = await DioHelper().getCasts();
-                          MoviesData.casts = Casts.convertToCasts(castList);
-                          Get.toNamed(AppRoutes.moviepage,
-                              arguments: [index, movies]);
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
+          SingleChildScrollView(
+            child: SizedBox(
+              height: 225,
+              child: movies.isEmpty
+                  ? const Center(
+                      child: CircularProgressIndicator(
+                      color: Color.fromARGB(255, 237, 55, 55),
+                    ))
+                  : ListView.builder(
+                      physics: BouncingScrollPhysics(),
+                      addAutomaticKeepAlives: true,
+                      itemCount: movies.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () async {
+                            DioHelper.id = movies[index].id.toString();
+                            List castList = await DioHelper().getCasts();
+                            MoviesData.casts = Casts.convertToCasts(castList);
+                            Get.toNamed(AppRoutes.moviepage,
+                                arguments: [index, movies]);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.network(
+                                  ApiConstants.imageUrl +
+                                      movies[index].posterPath,
+                                  fit: BoxFit.cover),
+                            ),
                           ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.network(
-                                ApiConstants.imageUrl +
-                                    movies[index].posterPath,
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                      );
-                    }),
+                        );
+                      }),
+            ),
           ),
         ],
       ),
